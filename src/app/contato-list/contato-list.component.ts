@@ -1,6 +1,6 @@
 import { Contato } from "./../../models/contato.model";
 import { ContatoService } from "./../services/contato.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
   selector: "app-contato-list",
@@ -8,10 +8,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./contato-list.component.css"]
 })
 export class ContatoListComponent implements OnInit {
-  contatos: Contato[];
-  constructor(private contatoService: ContatoService) {}
+  @Input() contatos: Contato[];
 
-  ngOnInit() {
-    this.contatos = this.contatoService.getAllContatos();
-  }
+  constructor() {}
+
+  ngOnInit() {}
 }

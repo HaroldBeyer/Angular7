@@ -1,6 +1,6 @@
 import { ContatoService } from "./../services/contato.service";
 import { Contato } from "../../models/contato.model";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -9,8 +9,8 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./contato-form.component.css"]
 })
 export class ContatoFormComponent implements OnInit {
-  contato: Contato;
-  contatos: Contato[];
+  @Input() contato: Contato;
+  @Output() saveContato = new EventEmitter();
 
   constructor(private contatoService: ContatoService) {}
 
@@ -19,11 +19,6 @@ export class ContatoFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.contato = form.value;
-    this.contato.id = new Date().getTime().toString();
-    this.contatoService.save(this.contato);
-    console.log(form.value);
-    //Errado, deveria ser uma observable...
-    window.location.reload();
+    this.saveContato.emit(form);
   }
 }
