@@ -7,7 +7,11 @@
       ></app-contato-form>
     </div>
     <div class="col-md-7">
-      <app-contato-list [contatos]="contatos"></app-contato-list>
+      <app-contato-list
+        [contatos]="contatos"
+        (editContato)="edit($event)"
+        (deleteContato)="delete($event)"
+      ></app-contato-list>
     </div>
   </div>
 </div>

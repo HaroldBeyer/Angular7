@@ -16,6 +16,10 @@ export class ContatoService {
     return this.localStorage.get(id);
   }
 
+  delete(contato: Contato) {
+    this.localStorage.remove(contato.id);
+  }
+
   getAllContatos(): Contato[] {
     return this.localStorage.keys().map(id => this.getContato(id));
   }

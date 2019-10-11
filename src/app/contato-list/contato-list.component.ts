@@ -1,6 +1,7 @@
+import { EventEmitter } from "@angular/core";
 import { Contato } from "./../../models/contato.model";
 import { ContatoService } from "./../services/contato.service";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output } from "@angular/core";
 
 @Component({
   selector: "app-contato-list",
@@ -9,8 +10,16 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ContatoListComponent implements OnInit {
   @Input() contatos: Contato[];
-
+  @Output() editContato = new EventEmitter();
+  @Output() deleteContato = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
+
+  edit(contato: Contato) {
+    this.editContato.emit(contato);
+  }
+  delete(contato: Contato) {
+    this.deleteContato.emit(contato);
+  }
 }
