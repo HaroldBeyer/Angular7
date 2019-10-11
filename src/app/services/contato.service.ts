@@ -11,4 +11,12 @@ export class ContatoService {
   save(contato: Contato) {
     this.localStorage.set(contato.id, contato);
   }
+
+  getContato(id: string): Contato {
+    return this.localStorage.get(id);
+  }
+
+  getAllContatos(): Contato[] {
+    return this.localStorage.keys().map(id => this.getContato(id));
+  }
 }

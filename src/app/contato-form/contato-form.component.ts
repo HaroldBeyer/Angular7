@@ -23,5 +23,7 @@ export class ContatoFormComponent implements OnInit {
     this.contato.id = new Date().getTime().toString();
     this.contatoService.save(this.contato);
     console.log(form.value);
+    //Errado, deveria ser uma observable...
+    window.location.reload();
   }
 }
